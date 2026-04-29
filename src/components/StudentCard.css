@@ -1,0 +1,25 @@
+/* src/components/StudentCard.css */
+.student-card {
+  background-color: var(--card-bg, #fff);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: var(--spacing, 15px);
+  margin: 10px;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  display: inline-block;
+}
+
+.student-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.student-info h3 {
+  margin: 10px 0;
+  color: var(--primary-color, #333);
+}

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'; // আইকন ইম্পোর্ট করলাম
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'; 
 import CourseTag from './CourseTag';
 import StatBadge from './StatBadge';
 import './StudentCard.css';
+import { StudentContext } from '../Context/StudentContext';
 
 const StudentCard = ({ name, id, avatar, gpa, major, onFavToggle }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const { removeStudent } = useContext(StudentContext);
 
   const handleToggle = () => {
     const nextFavoriteStatus = !isFavorite;
@@ -33,7 +35,7 @@ const StudentCard = ({ name, id, avatar, gpa, major, onFavToggle }) => {
           onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
           onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
         >
-          {/* টগল লজিক অনুযায়ী আইকন চেঞ্জ হবে */}
+          
           {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
         </button>
       </div>
@@ -49,6 +51,12 @@ const StudentCard = ({ name, id, avatar, gpa, major, onFavToggle }) => {
         <CourseTag courseName="Web Tech" color="#4a90e2" />
         <CourseTag courseName="HCI" color="#f39c12" />
       </div>
+      <button 
+  onClick={() => removeStudent(id)}
+  style={{ marginTop: '10px', backgroundColor: '#ff4d4d', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer' }}
+>
+  Remove Student
+</button>
     </div>
   );
 };

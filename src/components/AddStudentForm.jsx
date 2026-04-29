@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { StudentContext } from '../context/StudentContext';
+import { StudentContext } from '../Context/StudentContext';
 
 const AddStudentForm = () => {
   const { addStudent, students } = useContext(StudentContext);
@@ -11,7 +11,7 @@ const AddStudentForm = () => {
     let tempErrors = {};
     if (!formData.name) tempErrors.name = "Name is required";
     if (!formData.id || students.some(s => s.id === formData.id)) tempErrors.id = "ID must be unique and numeric";
-    if (!formData.major) tempErrors.major = "Major is required";
+    // if (!formData.major) tempErrors.major = "Major is required";
     if (formData.gpa < 0 || formData.gpa > 4) tempErrors.gpa = "GPA must be between 0-4.0";
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
@@ -23,7 +23,7 @@ const AddStudentForm = () => {
       addStudent({ ...formData, gpa: parseFloat(formData.gpa), avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=" + formData.name });
       setFormData({ name: '', id: '', major: '', gpa: '', courses: '' });
       setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 3000); // Auto-dismiss success message
+      setTimeout(() => setShowSuccess(false), 3000); 
     }
   };
 

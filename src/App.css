@@ -1,22 +1,45 @@
+/* ১. ডিজাইন টোকেনস (Variables) */
 :root {
   --primary-color: #2c3e50;
   --accent-color: #3498db;
-  --bg-color: #ecf0f1;
-  --card-bg: #ffffff;
   --spacing: 25px;
   --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  /* লাইট মোড ভেরিয়েবল */
+  --bg-color: #ecf0f1;
+  --card-bg: #ffffff;
+  --text-color: #2c3e50;
 }
 
+/* ২. ডার্ক মোড যখন সক্রিয় হবে */
+body.dark-theme {
+  --bg-color: #121212 !important;
+  --card-bg: #1e1e1e !important;
+  --text-color: #ffffff !important;
+  --primary-color: #000000 !important;
+}
+
+/* ৩. বডি স্টাইল - এটি পুরো স্ক্রিন কভার করবে */
 body {
   background-color: var(--bg-color);
+  color: var(--text-color);
   margin: 0;
+  min-height: 100vh;
   font-family: var(--font-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.student-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: var(--spacing);
-  gap: 20px;
+/* ৪. অ্যাপ কন্টেইনার এবং অন্যান্য কম্পোনেন্ট */
+/* যদি আপনার App.js এ কোনো div থাকে, সেটির ব্যাকগ্রাউন্ডও ভেরিয়েবল দিয়ে দিন */
+.App, .student-card, .add-student-form, .student-grid {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  transition: all 0.3s ease;
+}
+
+/* ৫. ডার্ক মোডে ইনপুট ফিল্ডের কালার ঠিক করা */
+body.dark-theme input {
+  background-color: #2a2a2a;
+  color: white;
+  border: 1px solid #444;
 }

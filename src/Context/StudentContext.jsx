@@ -7,27 +7,34 @@ export const StudentProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortType, setSortType] = useState("default");
 
-  // LocalStorage Persistence (Task 5)
+  
   useEffect(() => {
     const savedStudents = localStorage.getItem('students');
-    if (savedStudents) {
+    if (savedStudents && JSON.parse(savedStudents).length > 0) {
       setStudents(JSON.parse(savedStudents));
     } else {
-      setStudents([
+    
+      const defaultData = [
         { name: "Hridrita", id: "22-101", avatar: "https://i.ibb.co.com/ZpQcDRXV/image.png", major: "CSE", gpa: 3.9 },
         { name: "Arnob", id: "22-102", avatar: "https://i.ibb.co.com/Gv547Q1H/image.png", major: "EEE", gpa: 3.8 }
-      ]);
+      ];
+      setStudents(defaultData);
     }
   }, []);
 
+  
   useEffect(() => {
-    localStorage.setItem('students', JSON.stringify(students));
+    if (students.length > 0) {
+      localStorage.setItem('students', JSON.stringify(students));
+    }
   }, [students]);
 
   const addStudent = (newStudent) => setStudents([...students, newStudent]);
   
   const removeStudent = (id) => {
-    setStudents(students.filter(s => s.id !== id));
+    const updatedList = students.filter(s => s.id !== id);
+    setStudents(updatedList);
+    localStorage.setItem('students', JSON.stringify(updatedList)); 
   };
 
   return (

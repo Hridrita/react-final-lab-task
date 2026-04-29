@@ -1,14 +1,22 @@
 :root {
-  --primary-color: #4a90e2;
-  --bg-color: #f4f7f6;
+  --primary-color: #2c3e50;
+  --accent-color: #3498db;
+  --bg-color: #ecf0f1;
   --card-bg: #ffffff;
-  --text-main: #333;
-  --spacing: 20px;
+  --spacing: 25px;
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.App {
+body {
   background-color: var(--bg-color);
-  min-height: 100vh;
+  margin: 0;
+  font-family: var(--font-main);
+}
+
+.student-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   padding: var(--spacing);
-  text-align: center;
+  gap: 20px;
 }

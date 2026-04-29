@@ -1,19 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { StudentContext } from '../Context/StudentContext';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
+  const { setSearchTerm } = useContext(StudentContext);
+
   return (
-    <div className="search-bar" style={{ margin: '20px 0' }}>
+    <div className="search-bar" style={{ marginBottom: '15px' }}>
       <input
         type="text"
-        placeholder="Search by name or major..."
-        onChange={(e) => onSearch(e.target.value)}
-        style={{
-          padding: '10px',
-          width: '100%',
-          maxWidth: '400px',
-          borderRadius: '5px',
-          border: '1px solid #ccc'
-        }}
+        placeholder="Search students by name or major..."
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{ padding: '10px', width: '100%', borderRadius: '5px', border: '1px solid #ccc' }}
       />
     </div>
   );
